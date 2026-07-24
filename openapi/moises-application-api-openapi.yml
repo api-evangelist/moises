@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  title: Music AI Application API
+  version: v1
+  description: Music AI (the developer platform behind Moises) exposes AI audio models — stem separation, transcription, mastering, lyrics, chords, and more — as composable Modules assembled into Workflows and executed as asynchronous Jobs. Upload an audio file to temporary storage, create a Job against a Workflow, then poll for the result. Every request is authenticated with an API key in the Authorization header.
+  contact:
+    name: Music AI Support
+    email: support@music.ai
+    url: https://music.ai/docs/
+  termsOfService: https://music.ai/legal/terms-of-service/
+servers:
+- url: https://api.music.ai/v1
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Application
+  description: Account/application metadata.
+paths:
+  /application:
+    get:
+      tags:
+      - Application
+      operationId: getApplication
+      summary: Get application info
+      description: Returns metadata about the current API application/account.
+      responses:
+        '200':
+          description: Application metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Application:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    Error:
+      type: object
+      description: Error envelope returned by the API and on failed jobs.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code (e.g. BAD_INPUT, TIMEOUT, INTERNAL_ERROR).
+        title:
+          type: string
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Your API key, generated in the dashboard at https://music.ai/dash, sent verbatim (no `Bearer` prefix) in the Authorization header.

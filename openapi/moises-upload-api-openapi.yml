@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  title: Music AI Application Upload API
+  version: v1
+  description: Music AI (the developer platform behind Moises) exposes AI audio models — stem separation, transcription, mastering, lyrics, chords, and more — as composable Modules assembled into Workflows and executed as asynchronous Jobs. Upload an audio file to temporary storage, create a Job against a Workflow, then poll for the result. Every request is authenticated with an API key in the Authorization header.
+  contact:
+    name: Music AI Support
+    email: support@music.ai
+    url: https://music.ai/docs/
+  termsOfService: https://music.ai/legal/terms-of-service/
+servers:
+- url: https://api.music.ai/v1
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Upload
+  description: Temporary file staging for input audio.
+paths:
+  /upload:
+    get:
+      tags:
+      - Upload
+      operationId: getUploadUrl
+      summary: Request signed upload and download URLs
+      description: Returns a temporary `uploadUrl` (PUT your local file to it, hosted on Google Cloud Storage) and a `downloadUrl` you then pass as the job `inputUrl`.
+      responses:
+        '200':
+          description: Signed URLs issued.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uploadUrl:
+                    type: string
+                    format: uri
+                  downloadUrl:
+                    type: string
+                    format: uri
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      description: Error envelope returned by the API and on failed jobs.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code (e.g. BAD_INPUT, TIMEOUT, INTERNAL_ERROR).
+        title:
+          type: string
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Your API key, generated in the dashboard at https://music.ai/dash, sent verbatim (no `Bearer` prefix) in the Authorization header.
