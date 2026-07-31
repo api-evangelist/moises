@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: searched
+source: https://music.ai/docs/sdk/nodejs/ , https://music.ai/docs/sdk/python/ , https://music.ai/docs/clients/cli/
+packages:
+  - language: javascript
+    registry: npm
+    name: "@music.ai/sdk"
+    version: 1.0.26
+    url: https://www.npmjs.com/package/@music.ai/sdk
+    install: npm install @music.ai/sdk
+    official: true
+    notes: Official Node.js SDK for the Music AI API (published by the Music.ai team; maintainers Hugo Rodrigues, Mateus Pires).
+  - language: python
+    registry: pypi
+    name: musicai-sdk
+    version: 1.0.4
+    url: https://pypi.org/project/musicai-sdk/
+    install: pip install musicai-sdk
+    official: true
+    notes: Official Python SDK for the Music AI API (author Music.ai Support, support@music.ai).
+  - language: javascript
+    registry: npm
+    name: "@music.ai/cli"
+    url: https://www.npmjs.com/package/@music.ai/cli
+    install: npm install -g @music.ai/cli
+    official: true
+    notes: Official command-line client. See cli/moises-cli.yml for the command surface.

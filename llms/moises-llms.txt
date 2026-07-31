@@ -1,0 +1,29 @@
+# Moises / Music AI
+
+> Moises is the creative suite for musicians from Music AI, Inc., serving 70M+ musicians with AI audio tools (stem separation, chord/key detection, AI-generated stems, voice synthesis). The same models power the Music AI developer platform — a B2B REST API that runs audio through composable Modules and Workflows as asynchronous Jobs. API-key authenticated; base URL https://api.music.ai/v1.
+
+## APIs
+- [Music AI API docs](https://music.ai/docs/): Developer documentation home.
+- [API reference](https://music.ai/docs/api/reference/): Endpoints for upload, jobs, workflows, application.
+- [Quick start](https://music.ai/docs/getting-started/quick-start/): Upload → create job → poll → results.
+- [Authentication](https://music.ai/docs/api/authentication/): API key in the Authorization header.
+
+## Specs & artifacts
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/moises/refs/heads/main/openapi/moises-music-ai-openapi.yml): Faithful OpenAPI 3.1 of the documented API.
+- [Error codes](https://raw.githubusercontent.com/api-evangelist/moises/refs/heads/main/errors/moises-error-codes.yml): {code,title,message} envelope; BAD_INPUT/TIMEOUT/INTERNAL_ERROR.
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/moises/refs/heads/main/conventions/moises-conventions.yml): Async job model, pagination, file handling.
+- [Data model](https://raw.githubusercontent.com/api-evangelist/moises/refs/heads/main/data-model/moises-data-model.yml): Job/Workflow/Module/Application entities.
+
+## SDKs & tools
+- [Node.js SDK (@music.ai/sdk)](https://www.npmjs.com/package/@music.ai/sdk): npm install @music.ai/sdk
+- [Python SDK (musicai-sdk)](https://pypi.org/project/musicai-sdk/): pip install musicai-sdk
+- [CLI (@music.ai/cli)](https://www.npmjs.com/package/@music.ai/cli): npm install -g @music.ai/cli
+
+## Product & business
+- [Moises app](https://moises.ai): Consumer creative suite (web, desktop, iOS, Android).
+- [Music AI platform](https://music.ai/): B2B AI audio platform.
+- [Pricing](https://music.ai/pricing/): Pay-as-you-go, Professional ($25/mo), Business/Enterprise.
+- [Dashboard / sign up](https://music.ai/dash): Generate API keys.
+- [GitHub](https://github.com/moises-ai): moises-db dataset, openDAW, and more.
+- [Blog](https://moises.ai/blog/)
+- [Help center](https://help.moises.ai/hc/)

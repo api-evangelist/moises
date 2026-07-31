@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+source: https://music.ai/docs/clients/cli/
+name: Music AI CLI
+package: "@music.ai/cli"
+install:
+  - npm install -g @music.ai/cli
+auth:
+  method: env-var
+  env: MUSIC_AI_API_KEY
+  notes: Set the MUSIC_AI_API_KEY environment variable before running commands.
+commands:
+  - group: process
+    subcommands:
+      - name: process file
+        description: Create a job for a single local file, wait for completion, download the results, then delete the job.
+      - name: process folder
+        description: Process every file in a directory. Supports a --watch flag to continuously process newly added files.
+  - group: job
+    subcommands:
+      - name: job add
+        description: Create a new processing job.
+      - name: job delete
+        description: Remove a job by ID.
+      - name: job info
+        description: Retrieve details about a specific job.
+      - name: job list
+        description: Display all jobs.

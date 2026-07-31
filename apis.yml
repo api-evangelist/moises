@@ -1,8 +1,17 @@
 aid: moises
 name: Moises
-description: 'Moises is a company surfaced as a portfolio company of norwest-venture-partners and added
-  to the API Evangelist network as a stub for enrichment. Sector: unknown. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Moises is the creative suite for musicians from Music AI, Inc., serving more than
+  70 million musicians worldwide with AI-powered tools for practice, performance, and
+  creation — stem separation to isolate vocals and instruments, chord and key detection,
+  AI-generated stems, and voice synthesis across web, desktop, iOS, and Android. The
+  same models power the Music AI developer platform (music.ai, formerly reached at
+  developer.moises.ai), a B2B REST API that exposes those capabilities as composable
+  Modules assembled into Workflows and executed as asynchronous Jobs. Developers upload
+  audio to temporary storage, submit a job against a workflow, and poll for results,
+  with official Node.js and Python SDKs and a command-line client. Moises won iPad App
+  of the Year (2024) and was an Apple Design Awards finalist (2025), and is backed by
+  Norwest Venture Partners.
 url: https://raw.githubusercontent.com/api-evangelist/moises/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,13 +19,106 @@ x-backed-by:
 - norwest-venture-partners
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
+image: https://music.ai/favicon.ico
 tags:
 - Company
-- Unknown
-apis: []
+- Music
+- Audio
+- Artificial Intelligence
+- Machine Learning
+- Stem Separation
+- Audio Processing
+- Media
+- Developer Platform
+- SDKs
+apis:
+- aid: moises:moises-application-api
+  name: Moises Application API
+  description: Account/application metadata.
+  humanURL: https://music.ai/docs/
+  baseURL: https://api.music.ai/v1
+  tags:
+  - Application
+  properties:
+  - type: OpenAPI
+    url: openapi/moises-application-api-openapi.yml
+  - type: Documentation
+    url: https://music.ai/docs/
+  - type: APIReference
+    url: https://music.ai/docs/api/reference/
+  - type: GettingStarted
+    url: https://music.ai/docs/getting-started/quick-start/
+  - type: Authentication
+    url: https://music.ai/docs/api/authentication/
+- aid: moises:moises-jobs-api
+  name: Moises Jobs API
+  description: Create, retrieve, list, and delete processing jobs.
+  humanURL: https://music.ai/docs/
+  baseURL: https://api.music.ai/v1
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/moises-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://music.ai/docs/
+  - type: APIReference
+    url: https://music.ai/docs/api/reference/
+  - type: GettingStarted
+    url: https://music.ai/docs/getting-started/quick-start/
+  - type: Authentication
+    url: https://music.ai/docs/api/authentication/
+- aid: moises:moises-upload-api
+  name: Moises Upload API
+  description: Temporary file staging for input audio.
+  humanURL: https://music.ai/docs/
+  baseURL: https://api.music.ai/v1
+  tags:
+  - Upload
+  properties:
+  - type: OpenAPI
+    url: openapi/moises-upload-api-openapi.yml
+  - type: Documentation
+    url: https://music.ai/docs/
+  - type: APIReference
+    url: https://music.ai/docs/api/reference/
+  - type: GettingStarted
+    url: https://music.ai/docs/getting-started/quick-start/
+  - type: Authentication
+    url: https://music.ai/docs/api/authentication/
+- aid: moises:moises-workflows-api
+  name: Moises Workflows API
+  description: List the workflows configured in your account.
+  humanURL: https://music.ai/docs/
+  baseURL: https://api.music.ai/v1
+  tags:
+  - Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/moises-workflows-api-openapi.yml
+  - type: Documentation
+    url: https://music.ai/docs/
+  - type: APIReference
+    url: https://music.ai/docs/api/reference/
+  - type: GettingStarted
+    url: https://music.ai/docs/getting-started/quick-start/
+  - type: Authentication
+    url: https://music.ai/docs/api/authentication/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +127,54 @@ maintainers:
 common:
 - type: Website
   url: https://moises.ai
+- type: DeveloperPortal
+  url: https://music.ai/
+- type: Documentation
+  url: https://music.ai/docs/
+- type: APIReference
+  url: https://music.ai/docs/api/reference/
+- type: GettingStarted
+  url: https://music.ai/docs/getting-started/quick-start/
+- type: Pricing
+  url: https://music.ai/pricing/
+- type: SignUp
+  url: https://music.ai/dash
+- type: Support
+  url: https://help.moises.ai/hc/
+- type: Blog
+  url: https://moises.ai/blog/
+- type: GitHubOrganization
+  url: https://github.com/moises-ai
+- type: OpenAPI
+  url: openapi/moises-music-ai-openapi.yml
+- type: Authentication
+  url: authentication/moises-authentication.yml
+- type: Packages
+  url: packages/moises-packages.yml
+- type: SDKs
+  url: packages/moises-packages.yml
+- type: CLI
+  url: cli/moises-cli.yml
+- type: MCPServer
+  url: mcp/moises-mcp.yml
+- type: LLMsTxt
+  url: llms/moises-llms.txt
+- type: Overlay
+  url: overlays/moises-music-ai-overlay.yaml
+- type: Conformance
+  url: conformance/moises-conformance.yml
+- type: ErrorCatalog
+  url: errors/moises-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/moises-lifecycle.yml
+- type: Conventions
+  url: conventions/moises-conventions.yml
+- type: DataModel
+  url: data-model/moises-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1

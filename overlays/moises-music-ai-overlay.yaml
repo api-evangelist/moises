@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Music AI API
+  version: 1.0.0
+extends: openapi/moises-music-ai-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: moises
+      x-apievangelist-product: music-ai
+      x-apievangelist-async: true
+      x-apievangelist-notes: >-
+        Asynchronous job model — create a job, then poll GET /job/{id}/status
+        until SUCCEEDED or FAILED. No webhooks published as of 2026-07-20.
+  - target: $.paths['/job']['post']
+    update:
+      x-apievangelist-pattern: async-job-create
+  - target: $.paths['/job/{id}/status']['get']
+    update:
+      x-apievangelist-pattern: poll-for-completion

@@ -1,0 +1,308 @@
+openapi: 3.1.0
+# generated: '2026-07-20'
+# method: generated
+# source: https://music.ai/docs/api/reference/ (faithfully hand-authored from published Music AI API docs; provider does not publish an OpenAPI)
+info:
+  title: Music AI API
+  version: v1
+  description: >-
+    Music AI (the developer platform behind Moises) exposes AI audio models —
+    stem separation, transcription, mastering, lyrics, chords, and more — as
+    composable Modules assembled into Workflows and executed as asynchronous
+    Jobs. Upload an audio file to temporary storage, create a Job against a
+    Workflow, then poll for the result. Every request is authenticated with an
+    API key in the Authorization header.
+  contact:
+    name: Music AI Support
+    email: support@music.ai
+    url: https://music.ai/docs/
+  termsOfService: https://music.ai/legal/terms-of-service/
+servers:
+  - url: https://api.music.ai/v1
+    description: Production
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: Upload
+    description: Temporary file staging for input audio.
+  - name: Jobs
+    description: Create, retrieve, list, and delete processing jobs.
+  - name: Workflows
+    description: List the workflows configured in your account.
+  - name: Application
+    description: Account/application metadata.
+paths:
+  /upload:
+    get:
+      tags: [Upload]
+      operationId: getUploadUrl
+      summary: Request signed upload and download URLs
+      description: >-
+        Returns a temporary `uploadUrl` (PUT your local file to it, hosted on
+        Google Cloud Storage) and a `downloadUrl` you then pass as the job
+        `inputUrl`.
+      responses:
+        '200':
+          description: Signed URLs issued.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uploadUrl:
+                    type: string
+                    format: uri
+                  downloadUrl:
+                    type: string
+                    format: uri
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /job:
+    post:
+      tags: [Jobs]
+      operationId: createJob
+      summary: Create a job
+      description: Submit an audio input to a workflow for asynchronous processing.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobCreate'
+      responses:
+        '200':
+          description: Job accepted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/Unprocessable'
+    get:
+      tags: [Jobs]
+      operationId: listJobs
+      summary: List jobs
+      description: Paginated listing of jobs, filterable by status, workflow, and batch name.
+      parameters:
+        - name: page
+          in: query
+          schema: { type: integer, default: 0 }
+        - name: size
+          in: query
+          schema: { type: integer, default: 100 }
+        - name: status
+          in: query
+          schema: { $ref: '#/components/schemas/JobStatus' }
+        - name: workflow
+          in: query
+          schema: { type: string }
+        - name: batchName
+          in: query
+          schema: { type: string }
+      responses:
+        '200':
+          description: A page of jobs.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Job' }
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /job/{id}:
+    get:
+      tags: [Jobs]
+      operationId: getJob
+      summary: Get a job
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+      responses:
+        '200':
+          description: The job.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Job' }
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags: [Jobs]
+      operationId: deleteJob
+      summary: Delete a job
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+      responses:
+        '200':
+          description: Job deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /job/{id}/status:
+    get:
+      tags: [Jobs]
+      operationId: getJobStatus
+      summary: Get job status
+      description: Lightweight status check for polling job progress.
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+      responses:
+        '200':
+          description: The job status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { $ref: '#/components/schemas/JobStatus' }
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workflow:
+    get:
+      tags: [Workflows]
+      operationId: listWorkflows
+      summary: List workflows
+      description: Paginated listing of the workflows configured in your account.
+      parameters:
+        - name: page
+          in: query
+          schema: { type: integer, default: 0 }
+        - name: size
+          in: query
+          schema: { type: integer, default: 100 }
+      responses:
+        '200':
+          description: A page of workflows.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Workflow' }
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /application:
+    get:
+      tags: [Application]
+      operationId: getApplication
+      summary: Get application info
+      description: Returns metadata about the current API application/account.
+      responses:
+        '200':
+          description: Application metadata.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Application' }
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Your API key, generated in the dashboard at https://music.ai/dash,
+        sent verbatim (no `Bearer` prefix) in the Authorization header.
+  parameters:
+    JobId:
+      name: id
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+  responses:
+    BadRequest:
+      description: Invalid input.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Unprocessable:
+      description: Request understood but could not be processed.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+  schemas:
+    JobStatus:
+      type: string
+      enum: [QUEUED, STARTED, SUCCEEDED, FAILED]
+      description: >-
+        QUEUED = awaiting start; STARTED = processing; SUCCEEDED = results ready;
+        FAILED = an error occurred during processing.
+    JobCreate:
+      type: object
+      required: [name, workflow, params]
+      properties:
+        name:
+          type: string
+          description: A human-friendly name for the job.
+        workflow:
+          type: string
+          description: The slug/id of the workflow to run.
+        params:
+          type: object
+          description: Workflow parameters; at minimum an inputUrl to the audio.
+          properties:
+            inputUrl:
+              type: string
+              format: uri
+        metadata:
+          type: object
+          description: Arbitrary key/value metadata echoed back on the job.
+    Job:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        app: { type: string }
+        workflow: { type: string }
+        status: { $ref: '#/components/schemas/JobStatus' }
+        batchName: { type: [string, 'null'] }
+        workflowParams: { type: object }
+        metadata: { type: object }
+        result: { type: object }
+        name: { type: string }
+        createdAt: { type: string, format: date-time }
+        startedAt: { type: string, format: date-time }
+        completedAt: { type: string, format: date-time }
+    Workflow:
+      type: object
+      properties:
+        id: { type: string }
+        slug: { type: string }
+        name: { type: string }
+        description: { type: string }
+    Application:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+    Error:
+      type: object
+      description: Error envelope returned by the API and on failed jobs.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code (e.g. BAD_INPUT, TIMEOUT, INTERNAL_ERROR).
+        title:
+          type: string
+        message:
+          type: string

@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: searched
+source: https://music.ai/docs/api/reference/ , https://music.ai/docs/
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.music.ai/v1
+  docs: https://music.ai/docs/
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  notes: No formal deprecation policy or Sunset/Deprecation header support documented as of 2026-07-20.
+sla:
+  url: https://music.ai/pricing/
+  notes: Business/Enterprise plan advertises business-level SLAs; no public uptime target published.
+status_page: null
+status_page_notes: No public status page found (status.music.ai does not resolve; music.ai/status not found).
+deprecated_operations: []

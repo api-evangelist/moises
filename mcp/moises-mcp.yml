@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/moises-music-ai-openapi.yml
+notes: >-
+  No official hosted/remote Music AI MCP server was found on the docs, npm
+  (@modelcontextprotocol), or public MCP registries as of 2026-07-20. This is a
+  DERIVED candidate tool list, one tool per documented API operation, to seed a
+  future MCP server.
+server:
+  name: music-ai
+  transport: http
+tools:
+  - name: get_upload_url
+    description: Request signed upload and download URLs for staging an audio file.
+    source_operation: openapi/moises-music-ai-openapi.yml#getUploadUrl
+  - name: create_job
+    description: Submit an audio input to a workflow for asynchronous processing.
+    source_operation: openapi/moises-music-ai-openapi.yml#createJob
+  - name: get_job
+    description: Retrieve a job and its results.
+    source_operation: openapi/moises-music-ai-openapi.yml#getJob
+  - name: get_job_status
+    description: Check the status of a job (QUEUED/STARTED/SUCCEEDED/FAILED).
+    source_operation: openapi/moises-music-ai-openapi.yml#getJobStatus
+  - name: list_jobs
+    description: List jobs with pagination and status/workflow/batch filters.
+    source_operation: openapi/moises-music-ai-openapi.yml#listJobs
+  - name: delete_job
+    description: Delete a job by ID.
+    source_operation: openapi/moises-music-ai-openapi.yml#deleteJob
+  - name: list_workflows
+    description: List the workflows configured in the account.
+    source_operation: openapi/moises-music-ai-openapi.yml#listWorkflows
+  - name: get_application
+    description: Get metadata about the current API application/account.
+    source_operation: openapi/moises-music-ai-openapi.yml#getApplication

@@ -1,0 +1,20 @@
+{
+  "provider": "moises",
+  "sources": [
+    "moises-application-api-openapi.yml",
+    "moises-jobs-api-openapi.yml",
+    "moises-upload-api-openapi.yml",
+    "moises-workflows-api-openapi.yml"
+  ],
+  "outputs": [
+    "moises-application-api-openapi.yml",
+    "moises-jobs-api-openapi.yml",
+    "moises-upload-api-openapi.yml",
+    "moises-workflows-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

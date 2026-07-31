@@ -1,0 +1,48 @@
+generated: '2026-07-20'
+method: searched
+source: https://music.ai/docs/api/reference/ , https://music.ai/docs/api/authentication/ , openapi/moises-music-ai-openapi.yml
+authentication:
+  style: api-key
+  location: header
+  header: Authorization
+  format: raw key (no Bearer prefix)
+  docs: https://music.ai/docs/api/authentication/
+base_url: https://api.music.ai/v1
+async_model:
+  description: >-
+    Processing is asynchronous. Stage input via GET /upload, create a job with
+    POST /job, then poll GET /job/{id}/status until SUCCEEDED or FAILED. Results
+    are read from GET /job/{id}.
+  statuses: [QUEUED, STARTED, SUCCEEDED, FAILED]
+  completion_discovery: polling
+  webhooks: not-supported
+idempotency:
+  supported: false
+  notes: No idempotency-key header/param documented as of 2026-07-20.
+pagination:
+  style: page-number
+  params: [page, size]
+  defaults: { page: 0, size: 100 }
+  filters: [status, workflow, batchName]
+  applies_to: [GET /job, GET /workflow]
+file_handling:
+  input: >-
+    Request a signed uploadUrl + downloadUrl via GET /upload, PUT the local file
+    to the uploadUrl (Google Cloud Storage), then pass the downloadUrl as the job
+    params.inputUrl. Public URLs may also be passed directly.
+  storage_retention: 48h temporary storage on pay-as-you-go; permanent storage on paid plans.
+metadata:
+  supported: true
+  notes: Arbitrary metadata object may be attached to a job and is echoed back.
+error_envelope:
+  fields: [code, title, message]
+  see: errors/moises-error-codes.yml
+rate_limiting:
+  concurrency: >-
+    Enforced by concurrent-job limits per plan (2 concurrent on pay-as-you-go,
+    10 on Professional, custom on Enterprise) rather than documented request-rate
+    headers.
+cross_links:
+  errors: errors/moises-error-codes.yml
+  lifecycle: lifecycle/moises-lifecycle.yml
+  authentication: authentication/moises-authentication.yml

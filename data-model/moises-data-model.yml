@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/moises-music-ai-openapi.yml
+entities:
+  - name: Job
+    description: An asynchronous processing request bound to a workflow and an input audio file.
+    key: id (uuid)
+    fields: [id, app, workflow, status, batchName, workflowParams, metadata, result, name, createdAt, startedAt, completedAt]
+  - name: Workflow
+    description: A named, ordered sequence of Modules configured in the account/dashboard.
+    key: id
+    fields: [id, slug, name, description]
+  - name: Module
+    description: An individual AI audio building block (stem separation, transcription, mastering, etc.) composed into workflows.
+    note: Managed in the dashboard/Modules Directory; not a directly addressable API resource.
+  - name: Application
+    description: The API application/account issuing requests.
+    key: id
+    fields: [id, name]
+  - name: Upload
+    description: A temporary signed upload/download URL pair used to stage input audio.
+    fields: [uploadUrl, downloadUrl]
+relationships:
+  - from: Job
+    to: Workflow
+    type: belongs_to
+    via: workflow
+  - from: Workflow
+    to: Module
+    type: has_many
+    via: modules (composition)
+  - from: Job
+    to: Application
+    type: belongs_to
+    via: app
+  - from: Job
+    to: Upload
+    type: has_one
+    via: params.inputUrl (references the Upload downloadUrl)

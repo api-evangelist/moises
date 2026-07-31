@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://music.ai/docs/api/reference/
+envelope:
+  fields: [code, title, message]
+  description: >-
+    Errors (including on failed jobs) are returned as a JSON object with a
+    machine-readable `code`, a short `title`, and a human-readable `message`.
+http_status_codes:
+  - status: 200
+    meaning: Success.
+  - status: 400
+    meaning: Bad request / invalid input.
+  - status: 401
+    meaning: Missing or invalid API key.
+  - status: 404
+    meaning: Resource not found.
+  - status: 422
+    meaning: Request understood but could not be processed.
+error_codes:
+  - code: BAD_INPUT
+    title: Bad input
+    meaning: The provided input (e.g. inputUrl or workflow params) was invalid.
+    action: Verify the input file/URL and workflow parameters, then retry.
+  - code: TIMEOUT
+    title: Timeout
+    meaning: Processing exceeded the allowed time and did not complete.
+    action: Retry the job; for large files consider splitting or contacting support.
+  - code: INTERNAL_ERROR
+    title: Internal error
+    meaning: An unexpected server-side error occurred during processing.
+    action: Retry; if it persists, contact support@music.ai.

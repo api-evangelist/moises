@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/moises-music-ai-openapi.yml , https://music.ai/docs/
+skills:
+  - file: moises-separate-stems.md
+    name: Separate stems with Music AI
+    api: openapi/moises-music-ai-openapi.yml
+    operations: [getUploadUrl, createJob, getJobStatus, getJob, deleteJob]
+  - file: moises-manage-jobs.md
+    name: Discover workflows and manage jobs
+    api: openapi/moises-music-ai-openapi.yml
+    operations: [listWorkflows, listJobs, getJob, deleteJob, getApplication]

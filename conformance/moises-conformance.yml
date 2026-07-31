@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/moises-music-ai-openapi.yml , https://music.ai/docs/api/reference/
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: API-key authentication only (Authorization header); no OAuth2 flows documented.
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Custom {code,title,message} error envelope; not application/problem+json.
+  - id: rest-json
+    conforms: true
+    evidence: Resource-oriented JSON over HTTPS (jobs, workflows, upload, application).
+  - id: pagination
+    conforms: true
+    evidence: List endpoints (GET /job, GET /workflow) use page/size query parameters.
+  - id: async-job-polling
+    conforms: true
+    evidence: Asynchronous job model with QUEUED/STARTED/SUCCEEDED/FAILED status polled via GET /job/{id}/status.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key header documented.
+  - id: webhooks
+    conforms: false
+    evidence: No webhook/callback delivery documented; completion is discovered by polling.

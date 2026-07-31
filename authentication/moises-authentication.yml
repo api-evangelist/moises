@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: searched
+source: https://music.ai/docs/api/authentication/ , openapi/moises-music-ai-openapi.yml
+summary:
+  types: [apiKey]
+  api_key_in: [header]
+  oauth2_flows: []
+schemes:
+  - name: ApiKeyAuth
+    type: apiKey
+    in: header
+    parameter: Authorization
+    format: raw key (no Bearer prefix)
+    key_management: Generate and rotate keys in the dashboard at https://music.ai/dash
+    sources: [openapi/moises-music-ai-openapi.yml]
+    docs: https://music.ai/docs/api/authentication/
+notes: >-
+  Every request to the Music AI API must include the API key verbatim in the
+  Authorization header. There is no OAuth or OpenID Connect surface. The CLI
+  reads the key from the MUSIC_AI_API_KEY environment variable.
