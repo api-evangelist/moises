@@ -146,7 +146,7 @@ common:
 - type: GitHubOrganization
   url: https://github.com/moises-ai
 - type: OpenAPI
-  url: openapi/moises-music-ai-openapi.yml
+  url: openapi/_original/moises-music-ai-openapi.yml
 - type: Authentication
   url: authentication/moises-authentication.yml
 - type: Packages
