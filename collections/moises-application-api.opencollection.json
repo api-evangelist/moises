@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Music AI Application API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get application info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.music.ai/v1/application"
+          },
+          "docs": "Returns metadata about the current API application/account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
