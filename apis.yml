@@ -40,6 +40,17 @@ tags:
 - Music
 - Audio
 - Artificial Intelligence
+- Machine-Learning
+- Stem Separation
+- Audio Processing
+- Media
+- Developer Platform
+- SDK
+tags_raw:
+- Company
+- Music
+- Audio
+- Artificial Intelligence
 - Machine Learning
 - Stem Separation
 - Audio Processing
@@ -71,6 +82,8 @@ apis:
   humanURL: https://music.ai/docs/
   baseURL: https://api.music.ai/v1
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
