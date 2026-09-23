@@ -1,10 +1,7 @@
 {
   "provider": "moises",
   "sources": [
-    "moises-application-api-openapi.yml",
-    "moises-jobs-api-openapi.yml",
-    "moises-upload-api-openapi.yml",
-    "moises-workflows-api-openapi.yml"
+    "_original/moises-music-ai-openapi.yml"
   ],
   "outputs": [
     "moises-application-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "moises-music-ai-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "moises-application-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "moises-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "moises-upload-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "moises-workflows-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

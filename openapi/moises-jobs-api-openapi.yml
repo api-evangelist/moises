@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Music AI Application Jobs API
+  title: Music AI Jobs API
   version: v1
   description: Music AI (the developer platform behind Moises) exposes AI audio models — stem separation, transcription, mastering, lyrics, chords, and more — as composable Modules assembled into Workflows and executed as asynchronous Jobs. Upload an audio file to temporary storage, create a Job against a Workflow, then poll for the result. Every request is authenticated with an API key in the Authorization header.
   contact:
@@ -145,6 +145,37 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    JobCreate:
+      type: object
+      required:
+      - name
+      - workflow
+      - params
+      properties:
+        name:
+          type: string
+          description: A human-friendly name for the job.
+        workflow:
+          type: string
+          description: The slug/id of the workflow to run.
+        params:
+          type: object
+          description: Workflow parameters; at minimum an inputUrl to the audio.
+          properties:
+            inputUrl:
+              type: string
+              format: uri
+        metadata:
+          type: object
+          description: Arbitrary key/value metadata echoed back on the job.
+    JobStatus:
+      type: string
+      enum:
+      - QUEUED
+      - STARTED
+      - SUCCEEDED
+      - FAILED
+      description: QUEUED = awaiting start; STARTED = processing; SUCCEEDED = results ready; FAILED = an error occurred during processing.
     Job:
       type: object
       properties:
@@ -178,29 +209,6 @@ components:
         completedAt:
           type: string
           format: date-time
-    JobCreate:
-      type: object
-      required:
-      - name
-      - workflow
-      - params
-      properties:
-        name:
-          type: string
-          description: A human-friendly name for the job.
-        workflow:
-          type: string
-          description: The slug/id of the workflow to run.
-        params:
-          type: object
-          description: Workflow parameters; at minimum an inputUrl to the audio.
-          properties:
-            inputUrl:
-              type: string
-              format: uri
-        metadata:
-          type: object
-          description: Arbitrary key/value metadata echoed back on the job.
     Error:
       type: object
       description: Error envelope returned by the API and on failed jobs.
@@ -212,17 +220,15 @@ components:
           type: string
         message:
           type: string
-    JobStatus:
-      type: string
-      enum:
-      - QUEUED
-      - STARTED
-      - SUCCEEDED
-      - FAILED
-      description: QUEUED = awaiting start; STARTED = processing; SUCCEEDED = results ready; FAILED = an error occurred during processing.
   responses:
     Unprocessable:
       description: Request understood but could not be processed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:
@@ -235,12 +241,6 @@ components:
             $ref: '#/components/schemas/Error'
     BadRequest:
       description: Invalid input.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
       content:
         application/json:
           schema:
