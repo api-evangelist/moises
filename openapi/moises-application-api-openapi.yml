@@ -34,21 +34,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Application:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
     Error:
       type: object
       description: Error envelope returned by the API and on failed jobs.
@@ -60,6 +46,20 @@ components:
           type: string
         message:
           type: string
+    Application:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -52,7 +52,7 @@ tags:
 - Music
 - Audio
 - Artificial Intelligence
-- Machine-Learning
+- Machine Learning
 - Stem Separation
 - Audio Processing
 - Media
@@ -69,6 +69,7 @@ tags_raw:
 - Media
 - Developer Platform
 - SDKs
+- Machine-Learning
 apis:
 - aid: moises:moises-application-api
   name: Moises Application API

@@ -145,6 +145,25 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Error:
+      type: object
+      description: Error envelope returned by the API and on failed jobs.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code (e.g. BAD_INPUT, TIMEOUT, INTERNAL_ERROR).
+        title:
+          type: string
+        message:
+          type: string
+    JobStatus:
+      type: string
+      enum:
+      - QUEUED
+      - STARTED
+      - SUCCEEDED
+      - FAILED
+      description: QUEUED = awaiting start; STARTED = processing; SUCCEEDED = results ready; FAILED = an error occurred during processing.
     JobCreate:
       type: object
       required:
@@ -168,14 +187,6 @@ components:
         metadata:
           type: object
           description: Arbitrary key/value metadata echoed back on the job.
-    JobStatus:
-      type: string
-      enum:
-      - QUEUED
-      - STARTED
-      - SUCCEEDED
-      - FAILED
-      description: QUEUED = awaiting start; STARTED = processing; SUCCEEDED = results ready; FAILED = an error occurred during processing.
     Job:
       type: object
       properties:
@@ -209,26 +220,9 @@ components:
         completedAt:
           type: string
           format: date-time
-    Error:
-      type: object
-      description: Error envelope returned by the API and on failed jobs.
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code (e.g. BAD_INPUT, TIMEOUT, INTERNAL_ERROR).
-        title:
-          type: string
-        message:
-          type: string
   responses:
-    Unprocessable:
-      description: Request understood but could not be processed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
+    BadRequest:
+      description: Invalid input.
       content:
         application/json:
           schema:
@@ -239,8 +233,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid input.
+    Unprocessable:
+      description: Request understood but could not be processed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:
