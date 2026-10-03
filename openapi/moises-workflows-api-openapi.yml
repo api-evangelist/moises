@@ -47,18 +47,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      description: Error envelope returned by the API and on failed jobs.
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code (e.g. BAD_INPUT, TIMEOUT, INTERNAL_ERROR).
-        title:
-          type: string
-        message:
-          type: string
     Workflow:
       type: object
       properties:
@@ -70,13 +66,17 @@ components:
           type: string
         description:
           type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      description: Error envelope returned by the API and on failed jobs.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code (e.g. BAD_INPUT, TIMEOUT, INTERNAL_ERROR).
+        title:
+          type: string
+        message:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
