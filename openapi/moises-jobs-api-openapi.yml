@@ -144,48 +144,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unprocessable:
-      description: Request understood but could not be processed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid input.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    JobId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
   schemas:
-    JobStatus:
-      type: string
-      enum:
-      - QUEUED
-      - STARTED
-      - SUCCEEDED
-      - FAILED
-      description: QUEUED = awaiting start; STARTED = processing; SUCCEEDED = results ready; FAILED = an error occurred during processing.
     JobCreate:
       type: object
       required:
@@ -253,6 +212,47 @@ components:
         completedAt:
           type: string
           format: date-time
+    JobStatus:
+      type: string
+      enum:
+      - QUEUED
+      - STARTED
+      - SUCCEEDED
+      - FAILED
+      description: QUEUED = awaiting start; STARTED = processing; SUCCEEDED = results ready; FAILED = an error occurred during processing.
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid input.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unprocessable:
+      description: Request understood but could not be processed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    JobId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -55,17 +55,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    Workflow:
-      type: object
-      properties:
-        id:
-          type: string
-        slug:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
     Error:
       type: object
       description: Error envelope returned by the API and on failed jobs.
@@ -76,6 +65,17 @@ components:
         title:
           type: string
         message:
+          type: string
+    Workflow:
+      type: object
+      properties:
+        id:
+          type: string
+        slug:
+          type: string
+        name:
+          type: string
+        description:
           type: string
   securitySchemes:
     ApiKeyAuth:
