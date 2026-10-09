@@ -1,0 +1,75 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://music.ai/pricing/
+sources:
+- https://music.ai/pricing/
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: per-call
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+published: true
+note: Per-minute (and per-character) module pricing listed for Pay as you go and Professional tiers; Business/Enterprise
+  is 'Volume based'.
+plan_count: 3
+currency: USD
+plans:
+- name: Pay as you go
+  price_text: $0 USD
+  price: 0
+  currency: USD
+  period: month
+  included_quota: 48h temporary storage, 2 concurrent processing jobs
+  overage: Per-module usage rates, e.g. Stem separation - Musical stems (Vocals) $0.07 / min
+- name: Professional
+  price_text: $25 USD
+  price: 25
+  currency: USD
+  period: month
+  included_quota: 10 concurrent processing jobs, $25 credit included every month (limited offer), 100GB
+    permanent storage, 5% discount on all modules
+  overage: Discounted per-module rates, e.g. $0.0665 / min
+- name: Business / Enterprise
+  price_text: Contact us
+  period: none
+  included_quota: Business-level SLAs, dedicated integration engineer, high-throughput processing jobs
+  overage: Volume based
+rate_limit_statements:
+- 2 concurrent processing jobs
+- 10 concurrent processing jobs
+- High-throughput processing jobs
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  units: []
+  plans:
+  - name: Pay as you go
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Professional
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Business / Enterprise
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods:
+    - none
