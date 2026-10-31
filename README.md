@@ -64,6 +64,123 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Moises is a company surfaced as a portfolio company of norwest-venture-partners and added to the API Evangelist network as a stub for enrichment. Sector: unknown. This profile is a lead awaiting the enrichment pipeline.
+Moises is the creative suite for musicians from Music AI, Inc., serving more than 70 million musicians worldwide with AI-powered tools for practice, performance, and creation — stem separation to isolate vocals and instruments, chord and key detection, AI-generated stems, and voice synthesis across web, desktop, iOS, and Android. The same models power the Music AI developer platform (music.ai, formerly reached at developer.moises.ai), a B2B REST API that exposes those capabilities as composable Modules assembled into Workflows and executed as asynchronous Jobs. Developers upload audio to temporary storage, submit a job against a workflow, and poll for results, with official Node.js and Python SDKs and a command-line client. Moises won iPad App of the Year (2024) and was an Apple Design Awards finalist (2025), and is backed by Norwest Venture Partners.
 
-Backed by: norwest-venture-partners — https://moises.ai
+**Areas:** Company · Music · Audio · Artificial Intelligence · Machine Learning · Stem Separation · Audio Processing · Media · Developer Platform · SDK
+
+## Moises on APIs.io
+
+Everything profiled for Moises is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/moises/](https://apis.io/providers/moises/)** — or go straight to one of the APIs or properties below.
+
+### APIs (4)
+
+- [Moises Application API](https://apis.io/apis/moises/moises-application-api/) — Account/application metadata.
+- [Moises Jobs API](https://apis.io/apis/moises/moises-jobs-api/) — Create, retrieve, list, and delete processing jobs.
+- [Moises Upload API](https://apis.io/apis/moises/moises-upload-api/) — Temporary file staging for input audio.
+- [Moises Workflows API](https://apis.io/apis/moises/moises-workflows-api/) — List the workflows configured in your account.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [music-ai](https://apis.io/servers/moises/music-ai/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Music AI Application API](https://apis.io/collections/moises/open-moises-application-api/)
+- [Music AI Application Jobs API](https://apis.io/collections/moises/open-moises-jobs-api/)
+- [Music AI Application Upload API](https://apis.io/collections/moises/open-moises-upload-api/)
+- [Music AI Application Workflows API](https://apis.io/collections/moises/open-moises-workflows-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Moises Music Ai Overlay](https://apis.io/overlays/moises/moises-music-ai-overlay/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Moises Authentication](https://apis.io/security/moises/moises-authentication/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Moises Plans Pricing](https://apis.io/plans/moises/moises-plans-pricing/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://moises.ai)
+- [Documentation](https://music.ai/docs/)
+- [Getting started](https://music.ai/docs/getting-started/quick-start/)
+- [API reference](https://music.ai/docs/api/reference/)
+- [Pricing](https://music.ai/pricing/)
+- [Sign up](https://music.ai/dash)
+- [Support](https://help.moises.ai/hc/)
+- [Blog](https://moises.ai/blog/)
+- [GitHub](https://github.com/moises-ai)
+
+## API Evangelist rating
+
+**Kin Score 45.1** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 50.5 |
+| Contract governance | 4.5 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 73.2 |
+| Access clarity | 55.3 |
+
+**Agent readiness 23.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 10.0** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/moises/](https://apis.io/providers/moises/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Moises: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/moises/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
